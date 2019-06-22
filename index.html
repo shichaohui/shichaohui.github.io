@@ -3,8 +3,111 @@
   <head>
     <meta charset="utf-8">
     <title>石朝辉</title>
+    <style type="text/css">
+        
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        html,body{
+            width: 100%;
+            height: 100%;
+            background-color: rgb(196, 196, 196);
+        }
+
+        #left {
+            width: 10%;
+            height: 100%;
+            float: left;
+        }
+
+        #content {
+            width: 80%;
+            min-height: 100%;
+            background-color: white;
+            float: left;
+        }
+
+        #right {
+            width: 10%;
+            float: left;
+            height: 100%;
+        }
+
+        #tab {
+            padding: 20px;
+            background-color: #25a;
+        }
+
+        .tab_item {
+            font-size: 18px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .tab_item_select {
+            font-size: 25px;
+            margin-left: 10px;
+            margin-right: 10px;
+            padding-bottom: 3px;
+            border-bottom: 2px solid #f66;
+        }
+
+        #tab a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .game_card {
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            float: left;
+            margin: 20px;
+        }
+
+        .game_card a {
+            color: #25a;
+            text-decoration: none;
+        }
+
+        .game_card_img {
+            width: 100%;
+        }
+
+        .game_card_title {
+            padding-top: 5px;
+            padding-bottom: 10px;
+        }
+
+    </style>
   </head>
   <body>
-    <h1>石朝辉</h1>
+    
+    <div id="left"></div>
+    
+    <div id="content">
+
+        <!-- Tab -->
+        <div id="tab">
+            <span class="tab_item_select"><a href="javasript:void(0);">游戏</a></span>
+            <span class="tab_item"><a href="https://github.com/shichaohui" target="_blank">GitHub</a></span>
+        </div>
+
+        <!-- Game -->
+        <div id="game">
+            <div class="game_card">
+                <a href="./game/ColorUp/web-desktop/index.html">
+                    <img class="game_card_img" src="./game/ColorUp/logo.jpg"/>
+                    <p class="game_card_title">七彩蹦蹦</p>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="right"></div>
+
   </body>
 </html>
