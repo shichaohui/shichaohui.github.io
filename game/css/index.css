@@ -1,0 +1,29 @@
+
+.title {
+  text-align: center;
+}
+
+.card {
+  width: 66%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 30px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  padding: 15px;
+}
+
+.card a {
+  text-decoration: none;
+}
+
+.game-logo {
+  height: 45px;
+  border-radius: 9999px;
+  vertical-align: middle;
+}
+
+.game-name {
+  font-size: 22px;
+  vertical-align: middle;
+}

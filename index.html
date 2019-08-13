@@ -1,113 +1,71 @@
 <!DOCTYPE html>
+
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>石朝辉</title>
-    <style type="text/css">
+    
+    <head>
+        <meta charset="utf-8">
+        <title>石朝辉</title>
+        <base target="_blank">
+        <link rel="stylesheet" href="./index/css/index.css">
+        <link rel="stylesheet" href="./index/css/wave.css">
+    </head>
+    
+    <body>
         
-        *{
-            margin: 0;
-            padding: 0;
-        }
-
-        html,body{
-            width: 100%;
-            height: 100%;
-            background-color: rgb(196, 196, 196);
-        }
-
-        #left {
-            width: 10%;
-            height: 100%;
-            float: left;
-        }
-
-        #content {
-            width: 80%;
-            min-height: 100%;
-            background-color: white;
-            float: left;
-        }
-
-        #right {
-            width: 10%;
-            float: left;
-            height: 100%;
-        }
-
-        #tab {
-            padding: 20px;
-            background-color: #25a;
-        }
-
-        .tab_item {
-            font-size: 18px;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-        .tab_item_select {
-            font-size: 25px;
-            margin-left: 10px;
-            margin-right: 10px;
-            padding-bottom: 3px;
-            border-bottom: 2px solid #f66;
-        }
-
-        #tab a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .game_card {
-            width: 200px;
-            text-align: center;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            float: left;
-            margin: 20px;
-        }
-
-        .game_card a {
-            color: #25a;
-            text-decoration: none;
-        }
-
-        .game_card_img {
-            width: 100%;
-        }
-
-        .game_card_title {
-            padding-top: 5px;
-            padding-bottom: 10px;
-        }
-
-    </style>
-  </head>
-  <body>
-    
-    <div id="left"></div>
-    
-    <div id="content">
-
-        <!-- Tab -->
-        <div id="tab">
-            <span class="tab_item_select"><a href="javasript:void(0);">游戏</a></span>
-            <span class="tab_item"><a href="https://github.com/shichaohui" target="_blank">GitHub</a></span>
-        </div>
-
-        <!-- Game -->
-        <div id="game">
-            <div class="game_card">
-                <a href="./game/ColorUp/web-desktop/index.html" target="_blank">
-                    <img class="game_card_img" src="./game/ColorUp/logo.jpg"/>
-                    <p class="game_card_title">七彩蹦蹦</p>
+        <div class="content">
+            <p class="title">
+                <img class="avatar" src="./index/img/avatar.jpg">
+                <br/>
+                石朝辉
+            </p>
+            <p class="subtitle">做程序员，而不是 Android 程序员！</p>
+            <div class="projects">
+                <!-- GitHub -->
+                <a class="project" href="https://github.com/shichaohui">
+                    <img src="./index/img/github.svg">
+                </a>
+                <!-- 游戏 -->
+                <a class="project" href="./game/index.html">
+                    <img src="./index/img/game.svg">
+                </a>
+                <!-- BRVAH -->
+                <a class="project" href="https://github.com/CymChad/BaseRecyclerViewAdapterHelper">
+                    <img src="https://raw.githubusercontent.com/CymChad/BaseRecyclerViewAdapterHelper/master/app/src/main/res/mipmap-xxhdpi/logo.png">
                 </a>
             </div>
         </div>
+    
+        <!-- 底部水波纹动画 -->
+        <footer>
+            <svg viewBox="0 0 180 28">
+                <defs> 
+                    <filter id="goo">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur" />
+                        <feColorMatrix in="blur" mode="matrix" values="
+                            1 0 0 0 0  
+                            0 1 0 0 0  
+                            0 0 1 0 0  
+                            0 0 0 13 -9" result="goo" />
+                        <xfeBlend in="SourceGraphic" in2="goo" />
+                    </filter>
+                    <path id="wave" d="M 0,10 C 45,10 45,15 90,15 135,15 135,10 180,10 225,10 225,15 270,15 315,15 315,10 360,10 v 28 h -360 z" />
+                </defs>
 
-    </div>
-
-    <div id="right"></div>
+                <use id="wave3" class="wave" xlink:href="#wave" x="0" y="-2" />
+                <use id="wave2" class="wave" xlink:href="#wave" x="0" y="0" />
+                <use id="wave1" class="wave" xlink:href="#wave" x="0" y="1" />
+ 
+                <g class="gooeff" filter="url(#goo)">
+                    <circle class="drop drop1" cx="5" cy="5.4" r="8.8" />
+                    <circle class="drop drop2" cx="10" cy="3.1" r="7.5" />
+                    <circle class="drop drop3" cx="15" cy="8.3" r="9.2" />
+                    <circle class="drop drop4" cx="20" cy="5.4" r="9.8" />
+                    <circle class="drop drop5" cx="25" cy="6.1" r="7.5" />
+                    <circle class="drop drop6" cx="30" cy="4.8" r="9.2" />
+                </g>
+            </svg>
+        </footer>
 
   </body>
+
 </html>

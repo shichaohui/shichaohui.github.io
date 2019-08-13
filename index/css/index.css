@@ -1,0 +1,38 @@
+
+.content {
+  margin-top: 15%;
+}
+
+.avatar {
+  width: 45px;
+  border-radius: 9999px;
+}
+
+.title {
+  font-size: 22px;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 12px;
+  text-align: center;
+}
+
+.projects {
+  padding: 0 20% 0 20%;
+  text-align: center;
+}
+
+.project {
+  width: 66px;
+  height: 66px;
+  display: inline-block;
+  margin: 10px;
+  target: _blank;
+}
+
+.project img {
+  width: 66px;
+  height: 66px;
+  border-radius: 9999px;
+}
