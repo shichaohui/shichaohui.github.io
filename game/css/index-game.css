@@ -1,0 +1,49 @@
+
+#road {
+    width: 200%;
+    height: 10px;
+    position: absolute;
+    bottom: 0px;
+    background-image: url('../img/inner-game/grass.png');
+    background-repeat: repeat-x;
+}
+
+#player {
+    width: 50px;
+    margin-left: 30px;
+    bottom: 0px;
+    position: absolute;
+    padding: 0px;
+}
+
+#cloudContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+#obstacleContainer {
+    width: 100%;
+    height: 100%;
+    bottom: 0px;
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+#score {
+    margin-left: 10px;
+    font-size: 18px;
+    position: absolute;
+}
+
+#tips {
+    bottom: 0px;
+    margin: 5px;
+    margin-left: 100px;
+    position: absolute;
+}

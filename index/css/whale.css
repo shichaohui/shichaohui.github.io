@@ -1,0 +1,11 @@
+
+#whale {
+  width: 100vw;
+  position: absolute;
+  z-index: -999;
+}
+
+#whale svg {
+  width: 100%;
+  overflow: visible;
+}
