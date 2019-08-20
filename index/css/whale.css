@@ -3,6 +3,7 @@
   width: 100vw;
   position: absolute;
   z-index: -999;
+  bottom: 35%;
 }
 
 #whale svg {

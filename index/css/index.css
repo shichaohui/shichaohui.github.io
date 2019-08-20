@@ -1,20 +1,61 @@
 
 .content {
-  margin-top: 15%;
+  width: 100%;
+  text-align: center;
+  -webkit-transform: translateY(-50%);
+  position: absolute;
+  top: 40%;
+}
+
+.title {
+  font-size: 20px;
+  text-align: center;
+  display: inline-block;
 }
 
 .avatar {
   width: 45px;
   border-radius: 9999px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.title {
-  font-size: 22px;
+.hidden-profile {
+  font-size: 14px;
+  text-align: left;
+  color: white;
+  visibility: hidden;
+  background-color: black;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #4478d3;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+}
+
+.title:hover .hidden-profile {
+    visibility: visible;
+}
+
+.labels {
   text-align: center;
 }
 
+.label {
+  font-size: 14px;
+  color: white;
+  text-align: center;
+  background-color: #4478d3;
+  border-radius: 999px;
+  padding: 0px 8px 1px 8px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .subtitle {
-  font-size: 12px;
+  font-size: 13px;
   text-align: center;
 }
 
