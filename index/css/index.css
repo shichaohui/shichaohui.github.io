@@ -25,18 +25,24 @@
   font-size: 14px;
   text-align: left;
   color: white;
-  visibility: hidden;
   background-color: black;
   border-radius: 5px;
   border-style: solid;
   border-color: #4478d3;
   padding: 5px;
+  margin-left: 70px;
   position: absolute;
   z-index: 1;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
 }
 
 .title:hover .hidden-profile {
-    visibility: visible;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    transform-origin: 0 0;
+    -webkit-transition: transform .3s ease;
+    transition: transform .3s ease;
 }
 
 .labels {
