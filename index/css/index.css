@@ -23,7 +23,7 @@
   margin-right: auto;
 }
 
-.hidden-profile {
+.title .hidden-profile {
   font-size: 14px;
   text-align: left;
   color: white;
@@ -35,7 +35,7 @@
   border-color: #4478d3;
   border-width: 2px;
   padding: 5px;
-  margin-left: 70px;
+  margin-left: 66px;
   position: absolute;
   z-index: 1;
   -webkit-transform: scaleX(0);
@@ -48,6 +48,16 @@
     transform-origin: 0 0;
     -webkit-transition: transform .3s ease;
     transition: transform .3s ease;
+}
+
+.title .hidden-profile .icon {
+  width: 12px;
+  margin-right: 5px;
+}
+
+.title .hidden-profile p {
+  margin: 0px;
+  padding: 0px;
 }
 
 .labels {
