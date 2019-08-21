@@ -48,7 +48,9 @@ body {
 
 .game-logo {
   height: 45px;
-  border-radius: 9999px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
   vertical-align: middle;
 }
 
