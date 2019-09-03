@@ -6,6 +6,7 @@ window.onload = function() {
     let player = document.getElementById("player");
     let cloudContainer = document.getElementById("cloudContainer");
     let obstacleContainer = document.getElementById("obstacleContainer");
+    let foodContainer = document.getElementById("foodContainer");
     let score = document.getElementById("score");
     let tips = document.getElementById("tips");
 
@@ -19,19 +20,20 @@ window.onload = function() {
 
     // 移动速度
     let cloudSpeed = 1;
-    let obstacleSpeed = 5;
-    let roadSpeed = obstacleSpeed;
+    let speed = 5;
 
     // 计时器 id
-    let roadId = 0;
-    let generateCloudId = 0;
-    let generateObstacleId = 0;
-    let checkGameStateId = 0;
+    let gameIntervalId = 0;
+    let generateCloudIntervalId = 0;
+    let generateObstacleIntervalId = 0;
+    let generateFoodIntervalId = 0;
 
     // 云朵元素池
     let cloudPool = [];
     // 障碍物元素池
     let obstaclePool = [];
+    // 食物元素池
+    let foodPool = [];
 
     document.onkeydown = function(event) {
         let keyNum = window.event ? event.keyCode : event.which;
@@ -47,22 +49,46 @@ window.onload = function() {
     function start() {
         isPlaying = true;
         
-        roadId = setInterval(moveRoad, 16);
-        generateCloudId = setInterval(generateCloud(), 4000);
-        generateObstacleId = setInterval(generateObstacle(), 3000);
-        checkGameStateId = setInterval(checkGameState, 16);
+        gameIntervalId = setInterval(gameInterval, 16);
+        generateCloudIntervalId = setTimeout(generateCloud, 0);
+        generateObstacleIntervalId = setTimeout(generateObstacle, 0);
+        generateFoodIntervalId = setTimeout(generateFood, 5000);
 
         score.style.visibility = "visible";
         tips.style.visibility = "hidden";
     }
 
+    // 游戏间隔刷新函数
+    function gameInterval() {
+        moveRoad();
+        moveObstacle();
+        moveFood();
+        checkGameState();
+    }
+
     // 对路执行移动
     function moveRoad() {
-        let newMarginLeft = parseInt(road.style.marginLeft || 0) - roadSpeed;
+        let newMarginLeft = parseInt(road.style.marginLeft || 0) - speed;
         if (Math.abs(newMarginLeft) > road.clientWidth / 2) {
             newMarginLeft = 0;
         }
         road.style.marginLeft = newMarginLeft + "px";
+    }
+
+    // 对障碍物执行移动
+    function moveObstacle() {
+        for (let i = 0; i < obstacleContainer.childNodes.length; i++) {
+            let child = obstacleContainer.childNodes[i];
+            child.style.marginLeft = parseInt(child.style.marginLeft) - speed + "px";
+        }
+    }
+
+    // 对食物执行移动
+    function moveFood() {
+        for (let i = 0; i < foodContainer.childNodes.length; i++) {
+            let child = foodContainer.childNodes[i];
+            child.style.marginLeft = parseInt(child.style.marginLeft) - speed + "px";
+        }
     }
 
     // 生成云朵
@@ -80,12 +106,8 @@ window.onload = function() {
         img.style.marginLeft = cloudContainer.clientWidth + "px";
         cloudContainer.appendChild(img);
 
-        let interval = function(_img, marginLeft) {
-            return function() { _img.style.marginLeft = (marginLeft -= cloudSpeed) + "px" };
-        }
-        img.intervalId = setInterval(interval(img, cloudContainer.clientWidth), 16);
-
-        return generateCloud;
+        // 最少 2500ms 最多 (1500+2500)ms 生成一个障碍物
+        generateCloudIntervalId = setTimeout(generateCloud, Math.random() * 1500 + 2500);
     }
 
     // 生成障碍物
@@ -100,16 +122,32 @@ window.onload = function() {
             img.style.bottom = "0px";
         }
         img.isScored = false;
-        img.style.height = (Math.random() + 1) * player.clientHeight + "px";
+        img.style.height = (Math.random() * currentScore / 10 * 0.1  + 1) * player.clientHeight + "px";
         img.style.marginLeft = obstacleContainer.clientWidth + "px";
         obstacleContainer.appendChild(img);
 
-        let interval = function(_img, marginLeft) {
-            return function() { _img.style.marginLeft = (marginLeft -= obstacleSpeed) + "px" };
-        }
-        img.intervalId = setInterval(interval(img, obstacleContainer.clientWidth), 16);
+        // 最少 2000ms 最多 (1000+2000)ms 生成一个障碍物
+        generateObstacleIntervalId = setTimeout(generateObstacle, Math.random() * 1000 + 2000);
+    }
 
-        return generateObstacle;
+    // 生成食物
+    function generateFood() {
+        let img;
+        if (foodPool.length > 0) {
+            img = foodPool.pop();
+        } else {
+            img = document.createElement('img');
+            img.src = "./img/inner-game/food.svg";
+            img.style.position = "absolute";
+            img.style.height = player.clientHeight / 3 * 2 + "px";
+        }
+        img.isScored = false;
+        img.style.bottom = (Math.random() * jumpHeight) + "px";
+        img.style.marginLeft = foodContainer.clientWidth + "px";
+        foodContainer.appendChild(img);
+
+        // 最少 5000ms 最多 (5000+5000)ms 生成一个食物
+        generateFoodIntervalId = setTimeout(generateFood, Math.random() * 5000 + 5000);
     }
 
     // 检查游戏状态
@@ -131,7 +169,7 @@ window.onload = function() {
             for (let i = 0; i < obstacleContainer.childNodes.length; i++) {
                 let child = obstacleContainer.childNodes[i];
                 // 判断游戏是否结束
-                let obstacleRect = zoomOutBound(obstacleContainer.childNodes[i].getBoundingClientRect());
+                let obstacleRect = zoomOutBound(child.getBoundingClientRect());
                 let isIntersect = !(playerRect.right < obstacleRect.left || playerRect.left > obstacleRect.right ||
                     playerRect.top > obstacleRect.bottom || playerRect.bottom < obstacleRect.top);
                 if (isIntersect) {
@@ -148,6 +186,27 @@ window.onload = function() {
                     clearInterval(child.intervalId);
                     obstacleContainer.removeChild(child);
                     obstaclePool.push(child);
+                }
+            }
+        }
+
+        if (foodContainer.hasChildNodes()) {
+            let playerRect = zoomOutBound(player.getBoundingClientRect());
+            for (let i = 0; i < foodContainer.childNodes.length; i++) {
+                let child = foodContainer.childNodes[i];
+                // 判断是否得分
+                let foodRect = zoomOutBound(child.getBoundingClientRect());
+                let isIntersect = !(playerRect.right < foodRect.left || playerRect.left > foodRect.right ||
+                    playerRect.top > foodRect.bottom || playerRect.bottom < foodRect.top);
+                if (isIntersect && !child.isScored) {
+                    child.isScored = true;
+                    scoring();
+                }
+                // 回收食物
+                if (parseInt(child.style.marginLeft) < -child.clientWidth || child.isScored) {
+                    clearInterval(child.intervalId);
+                    foodContainer.removeChild(child);
+                    foodPool.push(child);
                 }
             }
         }
@@ -175,10 +234,10 @@ window.onload = function() {
         isPlaying = false;
         currentScore = 0;
         
-        clearInterval(roadId);
-        clearInterval(generateCloudId);
-        clearInterval(generateObstacleId);
-        clearInterval(checkGameStateId);
+        clearInterval(gameIntervalId);
+        clearInterval(generateCloudIntervalId);
+        clearInterval(generateObstacleIntervalId);
+        clearInterval(generateFoodIntervalId);
 
         while(cloudContainer.lastChild) {
             clearInterval(cloudContainer.lastChild.intervalId);
@@ -187,6 +246,10 @@ window.onload = function() {
         while(obstacleContainer.lastChild) {
             clearInterval(obstacleContainer.lastChild.intervalId);
             obstacleContainer.removeChild(obstacleContainer.lastChild);
+        }
+        while(foodContainer.lastChild) {
+            clearInterval(foodContainer.lastChild.intervalId);
+            foodContainer.removeChild(foodContainer.lastChild);
         }
 
         score.style.visibility = "hidden";
