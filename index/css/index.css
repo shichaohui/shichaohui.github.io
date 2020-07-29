@@ -95,14 +95,9 @@
   height: 66px;
   display: inline-block;
   margin: 10px;
+  padding: 3px;
   text-decoration: none;
   position: relative;
-}
-
-.project .plate {
-  position: absolute;
-  width: 100%;
-  height: 100%;
   background-color: white;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -110,12 +105,8 @@
 }
 
 .project img {
-  position: absolute;
-  width: 94%;
-  height: 94%;
-  top: 3%;
-  left: 3%;
-  vertical-align: middle;
+  width: 100%;
+  height: 100%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -123,10 +114,14 @@
 
 .project .overlay {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   top: 0px;
   left: 0px;
+  color: white;
   background-color: rgba(0, 0, 0, 0.6);
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -142,17 +137,4 @@
   transform: scale(1);
   -webkit-transition: transform .3s ease;
   transition: transform .3s ease;
-}
-
-.project .overlay span {
-  height: 20px;
-  line-height: 20px;
-  position: absolute;
-  color: white;
-  text-align: center;
-  margin: auto;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
 }
