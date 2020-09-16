@@ -1,5 +1,8 @@
 # shichaohui.github.io
 
-The personal homepage of me. 
+Store some static resources.
+
+## [My homepage](https://shichaohui.github.io/me) 
 
 https://shichaohui.github.io/me
+
